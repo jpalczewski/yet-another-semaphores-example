@@ -14,7 +14,6 @@
 
 int spawn(int id, int n, int m, int k, int shmid, int semid)
 {
-    int i;
     pid_t pid;
             
     pid = fork();
