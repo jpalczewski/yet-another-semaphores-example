@@ -74,8 +74,8 @@ int main(int argc, char **argv)
     if(init_semaphores(semid, m)==-1) return die("init_sempahores zwrocilo blad");
     if(init_shared_memory(shmid, m)==-1) return  die("init_shared_memory zwrocilo blad");
     
-    puts("Przerwa techniczna. Wcisnij enter, aby kontynuowac.");
-    getchar();
+    //puts("Przerwa techniczna. Wcisnij enter, aby kontynuowac.");
+    //getchar();
     while(--producers>=0)   
         if(spawn(producers, n, m, k, shmid, semid)==0) return 0;
     

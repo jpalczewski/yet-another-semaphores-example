@@ -22,18 +22,18 @@ void Client(int shmid, int semid, int m,int elem_to_process)
     while(--elem_to_process>=0)
     {
         l("Ciekawe czy mam cos w magazynie...");
-        if(magic(semid, FULL, -1)==-1) die_hard("P(FULL) zwrocilo blad.");
+        if(magic(semid, FULL, DOWN)==-1) die_hard("P(FULL) zwrocilo blad.");
         {
             l("Cos jest! Czekam na mozliwosc odczytu.");
-            if(magic(semid, MUTEX, -1)==-1) die_hard("P(MUTEX) zwrocilo blad.");
+            if(magic(semid, MUTEX, MTXLOCK)==-1) die_hard("P(MUTEX) zwrocilo blad.");
             {
                 item = buffer[buffer[HEAD]];
-                buffer[buffer[HEAD]] = -1;
+                //buffer[buffer[HEAD]] = -1;
                 buffer[HEAD] = calc_next_place(buffer[HEAD],m);
                 //print_buffer(buffer, m);   
             }
-            if(magic(semid, MUTEX, 1)==-1) die_hard("V(MUTEX) zwrocilo blad.");
-            if(magic(semid, EMPTY, 1)==-1) die_hard("V(EMPTY) zwrocilo blad.");
+            if(magic(semid, MUTEX, MTXUNLOCK)==-1) die_hard("V(MUTEX) zwrocilo blad.");
+            if(magic(semid, EMPTY, UP)==-1) die_hard("V(EMPTY) zwrocilo blad.");
         }
         sprintf(str, "Otrzymalem element %d. Pora go sprzedac w 3 sekundy.", item);
         l(str);

@@ -26,9 +26,10 @@
 #define EMPTY 1
 #define MUTEX 2
 
-#define MTXDOWN -1
-#define MTXUP 1
-
+#define MTXLOCK -1
+#define MTXUNLOCK 1
+#define DOWN -1
+#define UP 1
 
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_RED     "\x1b[31m"
